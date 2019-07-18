@@ -1,5 +1,6 @@
 package com.example.helloworld;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,8 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class RequestController {
+
+    @Autowired
+    UserRepository ur;
+
     @RequestMapping("home")
     public String home(){
+        System.out.println("Listing sample data");
+        ur.findAll().forEach(u -> System.out.println(u));
         return "index";
     }
 }
